@@ -1,0 +1,22 @@
+.task-container {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    .get-button {
+        width: 100%;
+        height: 2rem;
+    }
+    
+    .get-button:hover {
+        width: 75%;
+        transition: 750ms ease-in;
+    }
+
+    mat-card {
+        margin: 1rem;
+        width: 50vw;
+        background-color: whitesmoke;
+    }
+}
