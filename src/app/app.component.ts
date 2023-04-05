@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { baseUrl } from 'src/environments/environment';
 import { Task } from './task';
 
 @Component({
@@ -10,13 +9,13 @@ import { Task } from './task';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  readonly ROOT_URL = baseUrl;
+  readonly ROOT_URL = 'http://localhost:8081';
 
   tasks: Observable<Task[]>;
 
   constructor(private http: HttpClient){};
 
   getTasks() {
-    this.tasks = this.http.get<Task[]>(baseUrl + "/tasks");
+    this.tasks = this.http.get<Task[]>(this.ROOT_URL + "/tasks");
   }
 }
