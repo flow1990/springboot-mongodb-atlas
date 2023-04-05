@@ -4,7 +4,13 @@ pipeline {
         nodejs "nodejs"
     }
     stages {
-        stage('npm install'){
+        stage('npm install') {
+      agent any
+      steps {
+      	sh 'npm install'
+      }
+    }
+        stage('ng build'){
             steps{
                 script{
                     sh "ng build"
