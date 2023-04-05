@@ -1,16 +1,6 @@
 pipeline {
 	agent none
   stages {
-  	stage('NPM Install') {
-    	agent {
-      	docker {
-        	image 'nginx:1.17.1-alpine'
-        }
-      }
-      steps {
-      	sh 'npm install'
-      }
-    }
     stage('Docker Build') {
     	agent any
       steps {
