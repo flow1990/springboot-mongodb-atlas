@@ -9,7 +9,7 @@ import { Task } from './task';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  readonly ROOT_URL = 'http://localhost:8081';
+  readonly ROOT_URL = 'http://192.168.178.65:8090';
 
   tasks: Observable<Task[]>;
 
