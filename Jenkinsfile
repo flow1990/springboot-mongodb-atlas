@@ -4,11 +4,6 @@ pipeline {
         nodejs "nodejs"
     }
     stages {
-        stage('npm install') {
-      steps {
-      	sh 'npm install'
-      }
-    }
         stage('ng build'){
             steps{
                 script{
