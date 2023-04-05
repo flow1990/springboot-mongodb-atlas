@@ -1,25 +1,16 @@
 pipeline {
-  agent {
-    docker { image 'node:latest' }
-  }
-  stages {
-    stage('Install') {
-      steps { sh 'npm install' }
-    }
+    agent any
+    tools {
 
-    stage('Test') {
-      parallel {
-        stage('Static code analysis') {
-            steps { sh 'npm run-script lint' }
-        }
-        stage('Unit tests') {
-            steps { sh 'npm run-script test' }
-        }
-      }
     }
+    stages {
 
-    stage('Build') {
-      steps { sh 'npm run-script build' }
+        stage('Serving'){
+            steps{
+                script{
+                    sh "ng serve"
+                }
+            }
+        }
     }
-  }
 }
