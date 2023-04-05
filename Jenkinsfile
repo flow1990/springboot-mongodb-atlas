@@ -1,10 +1,21 @@
 pipeline {
-	agent none
-  stages {
+    agent any
+    tools {
+        nodejs "nodejs"
+    }
+    stages {
+        stage('npm install'){
+            steps{
+                script{
+                    sh "ng build"
+                }
+            }
+        }
+
     stage('Docker Build') {
-    	agent any
+      agent any
       steps {
-      	sh 'docker build -t flow90/springboot-mongodb-atlas-frontend:latest .'
+      	sh 'docker build -t shanem/spring-petclinic:latest .'
       }
     }
   }
