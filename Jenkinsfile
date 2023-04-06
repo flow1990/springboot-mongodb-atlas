@@ -4,7 +4,7 @@ pipeline {
         nodejs "nodejs"
     }
     stages {
-        stage('ng build'){
+        stage('Build Application'){
             steps{
                 script{
                     sh "ng build"
@@ -12,15 +12,16 @@ pipeline {
             }
         }
 
-    stage('Docker Build') {
+    stage('Build Docker Container') {
       steps {
       	sh 'docker build -t flow90/springboot-mongodb-atlas-frontend:latest .'
       }
     }
 
-    stage('Deploy') {
+    stage('Deploy Container') {
       steps {
-        sh 'docker kill springboot-mongodb-atlas-frontend'
+        sh 'docker ps -f name=springboot-mongodb-atlas-frontend -q | xargs --no-run-if-empty docker container stop'
+        sh 'docker container ls -a -fname=springboot-mongodb-atlas-frontend -q | xargs -r docker container rm'
       	sh 'docker run --rm -d -p 8091:80 --name springboot-mongodb-atlas-frontend flow90/springboot-mongodb-atlas-frontend'
       }
     }
